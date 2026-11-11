@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>الإسبانية A1</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFF4E8;--bg2:#FFE1C4;--surf:#fff;--ink:#3A1F14;--mut:#8A6652;--ac:#E4572E;--ac2:#F2A93B;--ok:#1F9D6B;--no:#C0392B;--line:#F0D5BC;--okbg:#DDF3EA;--nobg:#FBE3DD;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1E120C;--bg2:#2E1A10;--surf:#3A2418;--ink:#FCEBDD;--mut:#C9A58D;--ac:#FF7A52;--ac2:#F6B54E;--ok:#37C48D;--no:#F07A5F;--line:#5A3A28;--okbg:#14402F;--nobg:#4A2119;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1E120C;--bg2:#2E1A10;--surf:#3A2418;--ink:#FCEBDD;--mut:#C9A58D;--ac:#FF7A52;--ac2:#F6B54E;--ok:#37C48D;--no:#F07A5F;--line:#5A3A28;--okbg:#14402F;--nobg:#4A2119;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:linear-gradient(160deg,var(--bg),var(--bg2)) fixed;color:var(--ink);font-family:"Cairo",system-ui,sans-serif;min-height:100vh}
+main{max-width:560px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:1.5rem;font-weight:800;margin:0 0 4px;color:var(--ac)}
+#ov{color:var(--mut);font-size:.85rem;margin:0 0 12px}
+.modes{display:flex;background:var(--line);border-radius:12px;padding:4px;margin-bottom:12px}
+.modes button{flex:1;border:0;background:none;color:var(--mut);padding:8px 2px;border-radius:9px;font:inherit;font-weight:600;font-size:.9rem;cursor:pointer}
+.modes button[aria-pressed="true"]{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:8px}
+.chip{flex:none;border:1px solid var(--line);background:var(--surf);color:var(--ink);padding:6px 14px;border-radius:999px;font:inherit;font-size:.9rem;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ac);border-color:var(--ac);color:#fff}
+.bar{height:10px;background:var(--line);border-radius:8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ac2),var(--ok));transition:width .3s}
+.stat{display:flex;justify-content:space-between;color:var(--mut);font-size:.85rem;margin:6px 0 16px}
+.scene{perspective:1000px;height:300px;cursor:pointer}
+.card{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.card.flip{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;box-shadow:0 12px 30px rgba(120,50,10,.18)}
+.front{background:var(--surf)}
+.rear{background:linear-gradient(145deg,var(--ac),#B8381A);color:#fff;transform:rotateY(180deg)}
+.en{font-size:2.4rem;font-weight:800;direction:ltr;margin:0}
+.ar{font-size:2.2rem;font-weight:800;margin:0}
+.em{font-size:4.5rem;line-height:1;margin-bottom:8px}
+.hint{position:absolute;bottom:14px;font-size:.8rem;opacity:.6}
+.say{margin-top:14px;border:1px solid var(--line);background:transparent;color:var(--ac);border-radius:999px;padding:6px 16px;font:inherit;cursor:pointer}
+.row{display:flex;gap:10px;margin-top:16px}
+.row button,.next{padding:14px;border-radius:14px;border:0;font:inherit;font-weight:600;font-size:1rem;color:#fff;cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.2)}
+.row button{flex:1}
+.b-no{background:linear-gradient(135deg,#F7774F,var(--no))}.b-ok{background:linear-gradient(135deg,#2BD49A,var(--ok))}
+.next{display:block;width:100%;margin-top:8px;background:linear-gradient(135deg,var(--ac),var(--ac2))}
+.q{background:var(--surf);border-radius:20px;padding:22px;text-align:center;margin-bottom:12px;box-shadow:0 8px 24px rgba(120,50,10,.1)}
+.opts{display:grid;gap:10px}
+.opt{padding:14px;border-radius:14px;border:2px solid var(--line);background:var(--surf);color:var(--ink);font:inherit;font-size:1.05rem;font-weight:600;cursor:pointer}
+.opt.good{border-color:var(--ok);background:var(--okbg)}.opt.bad{border-color:var(--no);background:var(--nobg)}
+.fb{min-height:28px;text-align:center;margin:12px 0 0;font-weight:600}
+.inp{width:100%;padding:14px;border-radius:14px;border:2px solid var(--line);background:var(--surf);color:var(--ink);font:inherit;font-size:1.3rem;text-align:center;direction:ltr}
+.slot{min-height:64px;border:2px dashed var(--line);border-radius:14px;padding:10px;display:flex;flex-wrap:wrap;gap:8px;direction:ltr;margin-bottom:12px;background:var(--surf)}
+.tiles{display:flex;flex-wrap:wrap;gap:8px;direction:ltr;justify-content:center;min-height:50px}
+.tile{padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surf);color:var(--ink);font:inherit;font-size:1.05rem;font-weight:600;cursor:pointer}
+.slot .tile{border-color:var(--ac)}
+.tools{display:flex;gap:16px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.tools button{background:none;border:0;color:var(--mut);font:inherit;font-size:.9rem;cursor:pointer;text-decoration:underline}
+.done{text-align:center;padding:48px 16px;background:var(--surf);border-radius:20px}
+.done button{margin-top:12px;padding:12px 24px;border:0;border-radius:12px;background:var(--ac);color:#fff;font:inherit;font-weight:600;cursor:pointer}
+button:focus-visible,.scene:focus-visible,.inp:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.card,.bar i{transition:none}}
+</style>
+</head>
+<body>
+<main>
+  <h1>الإسبانية — المستوى A1 🇪🇸</h1>
+  <p id="ov"></p>
+  <div class="modes" id="modes"><button data-m="cards" aria-pressed="true">بطاقات</button><button data-m="quiz" aria-pressed="false">اختبار</button><button data-m="spell" aria-pressed="false">كتابة</button><button data-m="sent" aria-pressed="false">جمل</button></div>
+  <div class="chips" id="chips" role="group" aria-label="المجموعات"></div>
+  <div class="bar"><i id="bar"></i></div>
+  <div class="stat"><span id="st1"></span><span id="st2"></span></div>
+  <div id="stage"></div>
+  <div class="tools"><button id="shuf">خلط</button><button id="dir">الاختبار: إسباني ← عربي</button><button id="reset">إعادة التقدم</button></div>
+</main>
+<script>
+const R={
+"تحيات":"hola:مرحبا|adiós:مع السلامة|por favor:من فضلك|gracias:شكرا|lo siento:آسف|sí:نعم|no:لا|buenos días:صباح الخير|buenas noches:تصبح على خير|de nada:عفوا|perdón:المعذرة|¿cómo estás?:كيف حالك؟|bien:بخير|mucho gusto:تشرفت بمعرفتك|hasta luego:إلى اللقاء",
+"أرقام":"uno:واحد|dos:اثنان|tres:ثلاثة|cuatro:أربعة|cinco:خمسة|seis:ستة|siete:سبعة|ocho:ثمانية|nueve:تسعة|diez:عشرة|veinte:عشرون|cien:مئة",
+"ألوان":"rojo:أحمر|azul:أزرق|verde:أخضر|amarillo:أصفر|negro:أسود|blanco:أبيض|naranja:برتقالي|rosa:وردي",
+"عائلة":"madre:أم|padre:أب|hermano:أخ|hermana:أخت|hijo:ابن|hija:ابنة|abuelo:جد|abuela:جدة|tío:عم أو خال|tía:عمة أو خالة|amigo:صديق|familia:عائلة",
+"أكل وشرب":"agua:ماء|pan:خبز|leche:حليب|manzana:تفاحة|arroz:أرز|huevo:بيضة|café:قهوة|pescado:سمك|carne:لحم|pollo:دجاج|queso:جبن|té:شاي|jugo:عصير|patata:بطاطا|tomate:طماطم|azúcar:سكر|sal:ملح|plátano:موز",
+"حيوانات":"gato:قط|perro:كلب|pájaro:طائر|caballo:حصان|vaca:بقرة|oveja:خروف|león:أسد|conejo:أرنب",
+"أفعال":"ser:يكون (صفة دائمة)|estar:يكون (حالة أو مكان)|tener:يملك|ir:يذهب|comer:يأكل|beber:يشرب|hablar:يتكلم|vivir:يعيش|querer:يريد|hacer:يفعل|ver:يرى|leer:يقرأ|escribir:يكتب|trabajar:يعمل|estudiar:يدرس|comprar:يشتري|dormir:ينام|venir:يأتي|saber:يعرف|poder:يستطيع",
+"أشياء وأماكن":"casa:بيت|escuela:مدرسة|libro:كتاب|mesa:طاولة|puerta:باب|coche:سيارة|ciudad:مدينة|teléfono:هاتف|silla:كرسي|ventana:نافذة|cama:سرير|calle:شارع|tienda:دكان|hospital:مستشفى|mercado:سوق|habitación:غرفة|cocina:مطبخ|jardín:حديقة|playa:شاطئ|dinero:مال",
+"وقت وأيام":"día:يوم|noche:ليل|hoy:اليوم|mañana:غدا|ayer:أمس|semana:أسبوع|mes:شهر|año:سنة|lunes:الاثنين|viernes:الجمعة|hora:ساعة|ahora:الآن|siempre:دائما|nunca:أبدا",
+"صفات":"grande:كبير|pequeño:صغير|bueno:جيد|malo:سيئ|caliente:حار|frío:بارد|nuevo:جديد|viejo:قديم|feliz:سعيد|triste:حزين|rápido:سريع|lento:بطيء|fácil:سهل|difícil:صعب|bonito:جميل|barato:رخيص",
+"أسئلة وضمائر":"qué:ماذا|quién:من|dónde:أين|cuándo:متى|por qué:لماذا|cómo:كيف|cuánto:كم|yo:أنا|tú:أنت|él:هو|ella:هي|nosotros:نحن|y:و|pero:لكن"
+};
+const CE={"تحيات":"👋","أرقام":"🔢","ألوان":"🎨","عائلة":"👪","أكل وشرب":"🍽️","حيوانات":"🐾","أفعال":"⚡","أشياء وأماكن":"🏠","وقت وأيام":"📅","صفات":"✨","أسئلة وضمائر":"❓"};
+const EMO={};"agua=💧|pan=🍞|leche=🥛|manzana=🍎|arroz=🍚|huevo=🥚|café=☕|pescado=🐟|carne=🥩|pollo=🍗|queso=🧀|té=🍵|jugo=🧃|patata=🥔|tomate=🍅|sal=🧂|plátano=🍌|gato=🐱|perro=🐶|pájaro=🐦|caballo=🐴|vaca=🐮|oveja=🐑|león=🦁|conejo=🐰|casa=🏠|escuela=🏫|libro=📖|puerta=🚪|coche=🚗|ciudad=🏙️|teléfono=📱|silla=🪑|cama=🛏️|tienda=🏪|hospital=🏥|mercado=🛒|playa=🏖️|dinero=💰|rojo=🔴|azul=🔵|verde=🟢|amarillo=🟡|negro=⚫|blanco=⚪|naranja=🟠|rosa=🌸|madre=👩|padre=👨|feliz=😊|triste=😢|dormir=😴|leer=📖|beber=🥤".split("|").forEach(p=>{const[a,b]=p.split("=");EMO[a]=b});
+const SENT=["أنا طالب|Yo soy estudiante","هي معلمة|Ella es profesora","هذا كتابي|Este es mi libro","أين المدرسة؟|¿Dónde está la escuela?","أحب القهوة|Me gusta el café","هو يشرب الماء|Él bebe agua","عندي أخ واحد|Tengo un hermano","نحن نذهب إلى السوق|Vamos al mercado","اسمي سارة|Me llamo Sara","أنا من الجزائر|Soy de Argelia","هي تقرأ كتابا|Ella lee un libro","البيت كبير|La casa es grande","هل تتكلم الإنجليزية؟|¿Hablas inglés?","أريد كوب شاي|Quiero una taza de té","هم يلعبون كرة القدم|Ellos juegan al fútbol","الطقس حار اليوم|Hoy hace calor","أنا جائع|Tengo hambre","أين هاتفي؟|¿Dónde está mi teléfono?","أمي تعمل في مستشفى|Mi madre trabaja en un hospital","كم الثمن؟|¿Cuánto cuesta?","لا أعرف|No lo sé","نحن أصدقاء|Somos amigos","صباح الخير يا أستاذ|Buenos días, profesor","أراك غدا|Hasta mañana"].map(x=>x.split("|"));
+const all=[];for(const c in R)R[c].split("|").forEach(p=>{const i=p.indexOf(":");all.push({c,en:p.slice(0,i),ar:p.slice(i+1)})});
+const $=id=>document.getElementById(id);
+const ld=k=>{try{return new Set(JSON.parse(localStorage.getItem(k)||"[]"))}catch(e){return new Set()}};
+let cat="الكل",mode="cards",queue=[],sq=[],flipped=false,wrong=0,rev=false,known=ld("es_known"),sdone=ld("es_sent");
+const save=()=>{try{localStorage.setItem("es_known",JSON.stringify([...known]));localStorage.setItem("es_sent",JSON.stringify([...sdone]))}catch(e){}ov()};
+const pool=()=>all.filter(w=>cat==="الكل"||w.c===cat);
+const PUN=/[¿?¡!.,]/g;
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function speak(t){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="es-ES";u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
+function ov(){$("ov").textContent="كلمات "+known.size+"/"+all.length+" · جمل "+sdone.size+"/"+SENT.length}
+function build(){sq=shuffle(SENT.map((_,i)=>i).filter(i=>!sdone.has(i)));queue=shuffle(pool().filter(w=>!known.has(w.en)));flipped=false;wrong=0;render()}
+function chips(){const h=$("chips");h.innerHTML="";["الكل",...Object.keys(R)].forEach(c=>{const b=document.createElement("button");b.className="chip";b.textContent=c;b.setAttribute("aria-pressed",c===cat);b.onclick=()=>{cat=c;chips();build()};h.appendChild(b)})}
+function head(){const p=pool(),k=p.filter(w=>known.has(w.en)).length;$("bar").style.width=(p.length?k/p.length*100:0)+"%";$("st1").textContent="أتقنت "+k+" من "+p.length;$("st2").textContent="المتبقي: "+queue.length+" · أخطاء: "+wrong}
+function nxt(f){const n=document.createElement("button");n.className="next";n.textContent="التالي";n.onclick=f||render;$("nx").appendChild(n);n.focus()}
+function finish(msg,fn){$("stage").innerHTML='<div class="done"><h2>¡Muy bien! 🎉</h2><p>'+msg+'</p><button id="again">ابدأ من جديد</button></div>';$("again").onclick=fn}
+function render(){ov();if(mode==="sent"){sentRender();return}head();if(!queue.length){finish("خلّصت هذه المجموعة.",()=>{pool().forEach(w=>known.delete(w.en));save();build()});return}mode==="quiz"?quiz():mode==="spell"?spell():cards()}
+function cards(){
+  const w=queue[0],s=$("stage");
+  s.innerHTML='<div class="scene" id="scene" tabindex="0" role="button" aria-label="اقلب البطاقة"><div class="card" id="card"><div class="face front"><p class="en"></p><button class="say" id="say" type="button">🔊 استمع</button><span class="hint">اضغط للقلب</span></div><div class="face rear"><div class="em" id="em"></div><p class="ar"></p></div></div></div><div class="row"><button class="b-no" id="no">أعدها لاحقا</button><button class="b-ok" id="ok">أعرفها</button></div>';
+  s.querySelector(".en").textContent=w.en;s.querySelector(".ar").textContent=w.ar;$("em").textContent=EMO[w.en]||CE[w.c];
+  const card=$("card"),flip=()=>{flipped=!flipped;card.classList.toggle("flip",flipped)};
+  $("scene").onclick=flip;$("scene").onkeydown=e=>{if(e.key===" "||e.key==="Enter"){e.preventDefault();flip()}};
+  $("say").onclick=e=>{e.stopPropagation();speak(w.en)};
+  $("ok").onclick=()=>{known.add(w.en);save();queue.shift();flipped=false;render()};
+  $("no").onclick=()=>{queue.push(queue.shift());flipped=false;render()};
+}
+function quiz(){
+  const w=queue[0],s=$("stage");
+  let d=shuffle(all.filter(x=>x.en!==w.en&&x.c===w.c));if(d.length<3)d=d.concat(shuffle(all.filter(x=>x.c!==w.c)));
+  const opts=shuffle([w,...d.slice(0,3)]);
+  s.innerHTML='<div class="q"><p class="'+(rev?"ar":"en")+'" id="qq"></p>'+(rev?"":'<button class="say" id="say" type="button">🔊 استمع</button>')+'</div><div class="opts" id="opts"></div><p class="fb" id="fb" aria-live="polite"></p><div id="nx"></div>';
+  $("qq").textContent=rev?w.ar:w.en;if(!rev)$("say").onclick=()=>speak(w.en);
+  let a=false;
+  opts.forEach(o=>{const b=document.createElement("button");b.className="opt";b.textContent=rev?o.en:o.ar;if(rev)b.style.direction="ltr";
+    b.onclick=()=>{if(a)return;a=true;
+      [...$("opts").children].forEach((x,i)=>{x.disabled=true;if(opts[i]===w)x.classList.add("good")});
+      if(o===w){known.add(w.en);save();queue.shift();$("fb").textContent="✅ صحيح!";if(rev)speak(w.en)}
+      else{b.classList.add("bad");wrong++;queue.shift();queue.splice(Math.min(3,queue.length),0,w);$("fb").textContent="❌ الجواب: "+(rev?w.en:w.ar)+" — بنعاودهالك."}
+      head();nxt()};
+    $("opts").appendChild(b)});
+}
+function spell(){
+  const w=queue[0],s=$("stage"),norm=t=>t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9 ]/g,"").replace(/\s+/g," ").trim();
+  s.innerHTML='<div class="q"><div class="em" id="em"></div><p class="ar" id="sar"></p><button class="say" id="say" type="button">🔊 استمع</button></div><input class="inp" id="inp" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="اكتبها بالإسبانية"><p class="fb" id="fb" aria-live="polite"></p><div class="row"><button class="b-ok" id="chk">تحقق</button></div><div id="nx"></div>';
+  $("sar").textContent=w.ar;$("em").textContent=EMO[w.en]||CE[w.c];$("say").onclick=()=>speak(w.en);
+  const inp=$("inp");inp.focus();
+  const go=()=>{if($("nx").firstChild)return;
+    if(norm(inp.value)===norm(w.en)){known.add(w.en);save();queue.shift();const exact=inp.value.trim().toLowerCase()===w.en.toLowerCase();$("fb").textContent=exact?"✅ صحيح!":"✅ صحيح، لكن الإملاء بالحركات: "+w.en;speak(w.en)}
+    else{wrong++;queue.shift();queue.splice(Math.min(3,queue.length),0,w);$("fb").textContent="❌ الصحيح: "+w.en+" — بنعاودهالك."}
+    head();$("chk").disabled=true;inp.disabled=true;nxt()};
+  $("chk").onclick=go;inp.onkeydown=e=>{if(e.key==="Enter")go()};
+}
+function sentRender(){
+  $("bar").style.width=(sdone.size/SENT.length*100)+"%";$("st1").textContent="أتممت "+sdone.size+" من "+SENT.length;$("st2").textContent="المتبقي: "+sq.length+" · أخطاء: "+wrong;
+  const s=$("stage");
+  if(!sq.length){finish("ركّبت كل الجمل.",()=>{sdone=new Set();save();build()});return}
+  const [ar,es]=SENT[sq[0]],target=es.replace(PUN,"").split(" "),tl=target.map(z=>z.toLowerCase());
+  const extra=shuffle([...new Set(SENT.flatMap(x=>x[1].replace(PUN,"").split(" ")))].filter(w=>!tl.includes(w.toLowerCase()))).slice(0,3);
+  let picked=[];const bank=shuffle([...target,...extra].map(t=>({t,used:false})));
+  s.innerHTML='<div class="q"><p class="ar" id="sar" style="font-size:1.5rem"></p></div><div class="slot" id="slot"></div><div class="tiles" id="tiles"></div><p class="fb" id="fb" aria-live="polite"></p><div class="row"><button class="b-no" id="clr">مسح</button><button class="b-ok" id="chk">تحقق</button></div><div id="nx"></div>';
+  $("sar").textContent=ar;
+  const mk=(o,fn,box)=>{const b=document.createElement("button");b.className="tile";b.textContent=o.t;b.onclick=fn;box.appendChild(b)};
+  function draw(){$("slot").innerHTML="";$("tiles").innerHTML="";
+    picked.forEach(o=>mk(o,()=>{o.used=false;picked=picked.filter(x=>x!==o);draw()},$("slot")));
+    bank.filter(o=>!o.used).forEach(o=>mk(o,()=>{o.used=true;picked.push(o);draw()},$("tiles")))}
+  $("clr").onclick=()=>{bank.forEach(o=>o.used=false);picked=[];$("fb").textContent="";draw()};
+  $("chk").onclick=()=>{
+    if(picked.map(o=>o.t).join(" ").toLowerCase()===tl.join(" ")){speak(es);sdone.add(sq[0]);save();sq.shift();
+      $("bar").style.width=(sdone.size/SENT.length*100)+"%";$("fb").textContent="✅ ممتاز! "+es;$("chk").disabled=true;$("clr").disabled=true;nxt(sentRender)}
+    else{wrong++;$("st2").textContent="المتبقي: "+sq.length+" · أخطاء: "+wrong;$("fb").textContent="❌ الترتيب غير صحيح، جرّب مرة أخرى."}
+  };
+  draw();
+}
+$("modes").onclick=e=>{const m=e.target.dataset.m;if(!m)return;mode=m;$("chips").style.display=m==="sent"?"none":"";[...$("modes").children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.m===m));build()};
+$("shuf").onclick=build;
+$("dir").onclick=()=>{rev=!rev;$("dir").textContent=rev?"الاختبار: عربي ← إسباني":"الاختبار: إسباني ← عربي";if(mode==="quiz")build()};
+$("reset").onclick=()=>{known=new Set();sdone=new Set();save();build()};
+chips();build();
+</script>
+</body>
+</html>
